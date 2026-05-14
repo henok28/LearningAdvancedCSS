@@ -3,7 +3,7 @@
   padding: 6rem;
   padding-left: 9rem;
   font-size: $default-font-size;
-  background-color: $color-white;
+  background-color: rgba($color-white, 0.6);
   box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
   border-radius: 3px;
   margin: 0 auto;
@@ -17,18 +17,46 @@
     float: left;
     width: 15rem;
     height: 15rem;
+
     shape-outside: circle(
       50% at 50% 50%
     ); //here the above 3 lines of code is mandatory to apply an outside-shape
-    background-color: orangered;
+
     clip-path: circle(50% at 50% 50%);
     transform: translateX(-3rem) skewX(12deg);
+    position: relative;
   }
 
   &__image {
     height: 100%;
+    transform: translateX(-4rem) scale(1.2);
+    backface-visibility: hidden;
+    transition: all 0.5s;
   }
 
   &__text {
+  }
+
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    text-transform: uppercase;
+    color: $color-white;
+    font-size: 1.7rem;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.5s;
+    backface-visibility: hidden;
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  &:hover &__image {
+    transform: translateX(-4rem) scale(1);
+    filter: blur(3px) brightness(80%);
   }
 }
